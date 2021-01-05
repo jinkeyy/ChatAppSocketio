@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>Demo Socketio - Homepage</title>
+    <script src="./jquery/jquery.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+
+    <script>
+        var socket = io("http://localhost:3000");
+
+        //client nhận dữ liệu từ server
+        socket.on("Server-sent-data", function(data) {
+            $("#chat-content").html(data);
+        });
+
+        //client gửi dữ liệu lên server
+        $(document).ready(function() {
+            $("#send").click(function() {
+
+                socket.emit("Client-sent-data", "TÔI KHÔNG HIỂU");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <button id="send">Send</button>
+        <div id="chat-content"></div>
+    </div>
+</body>
+
+</html>

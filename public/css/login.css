@@ -1,0 +1,45 @@
+.login-title-wrapper {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.login-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    height: 50px;
+}
+
+.login-row input {
+    outline: none;
+    border: 1px solid white;
+    height: 100%;
+    width: 80%;
+}
+
+.login-action-wrapper {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    background-color: white;
+    transition: 0.5s all;
+}
+
+.btn:hover {
+    color: white;
+    background-color: black;
+}
