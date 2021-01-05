@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
-    <link rel="stylesheet" href="./public/css/style.css">
-    <link rel="stylesheet" href="./public/css/login.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 </head>
 
@@ -15,29 +15,31 @@
         <div class="main">
         </div>
         <div class="asile-right">
-            <div class="login-title-wrapper">
-                <div class="login-title">
-                    ĐĂNG KÍ
+            <form action="/register/user" method="POST">
+                <div class="login-title-wrapper">
+                    <div class="login-title">
+                        ĐĂNG KÍ
+                    </div>
                 </div>
-            </div>
-            <div class="login-username-wrapper login-row">
-                <input type="text" name="username" placeholder="Nhập username...">
-            </div>
-            <div class="login-password-wrapper login-row">
-                <input type="password" name="password" placeholder="Nhập password...">
-            </div>
-            <div class="login-password-wrapper login-row">
-                <input type="password" name="rPassword" placeholder="Nhập lại password...">
-            </div>
-            <div class="mess-error">
+                <div class="login-username-wrapper login-row">
+                    <input type="text" name="username" placeholder="Nhập username...">
+                </div>
+                <div class="login-password-wrapper login-row">
+                    <input type="password" name="password" placeholder="Nhập password...">
+                </div>
+                <div class="login-password-wrapper login-row">
+                    <input type="password" name="rPassword" placeholder="Nhập lại password...">
+                </div>
+                <div class="mess-error">
 
-            </div>
-            <div class="login-action-wrapper">
-                <button type="button" class="btn">ĐĂNG KÍ</button>
-            </div>
-            <div class="login-wrapper link-wrapper">
-                <a href="">ĐĂNG NHẬP</a>
-            </div>
+                </div>
+                <div class="login-action-wrapper">
+                    <button type="submit" class="btn">ĐĂNG KÍ</button>
+                </div>
+                <div class="login-wrapper link-wrapper">
+                    <a href="/login">ĐĂNG NHẬP</a>
+                </div>
+            </form>
         </div>
     </div>
 </body>

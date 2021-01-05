@@ -25,11 +25,19 @@ io.on("connection", function(socket) {
     //server lắng nghe dữ liệu từ client
     socket.on("Client-sent-data", function(data) {
         //sau khi lắng nghe dữ liệu, server phát lại dữ liệu này đến các client khác
-        socket.emit("Server-sent-data", data);
+        socket.emit("Server-sent-data", "CHÀO");
     });
 });
 
 const loginController = require('./controller/Login')
 const loginUserController = require('./controller/userLogin')
+const registerController = require('./controller/Register')
+const registerUserController = require('./controller/userRegister');
+const { render } = require("ejs");
 app.get('/login', loginController);
-app.get('login/user', loginUserController)
+app.post('/login/user', loginUserController)
+app.get('/register', registerController)
+app.post('/register/user', registerUserController)
+app.get('/home', (req, res) => {
+    res.render("home")
+})

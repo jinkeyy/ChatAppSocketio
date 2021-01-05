@@ -1,6 +1,6 @@
-console.log("hello")
+let data = document.cookie;
+console.log(data)
 var socket = io("http://localhost:3000");
-//client nhận dữ liệu từ server
 socket.on("Server-sent-data", function(data) {
     $(".main-content-wrapper").append(`<div class="my-message-wrapper">
     <div class="my-message">
