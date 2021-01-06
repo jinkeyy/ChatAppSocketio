@@ -143,6 +143,14 @@
     color: tomato;
 }
 
+.owner {
+    color: white;
+}
+
+.my-message .owner {
+    text-align: right;
+}
+
 
 /* //////////////////////////////////////////////////////////////////////*/
 

@@ -5,37 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
-    <script src="./jquery/jquery.js"></script>
-    <script src="socket.io/socket.io.js"></script>
+    <script src="/jquery/jquery.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
 <body>
-    <div class="app">
-        <div class="main">
-            <div class="main-content-wrapper">
-                <div class="guest-message-wrapper">
-                    <div class="guest-message">
-                        <div class="created-at">12:04</div>
-                        <div class="guest-message-content">
+    <div class="app ">
+        <div class="main ">
+            <div class="main-content-wrapper ">
+                <!-- <div class="guest-message-wrapper ">
+                    <div class="guest-message ">
+                        <div class="owner ">Admin</div>
+                        <div class="created-at ">12:04</div>
+                        <div class="guest-message-content ">
                             <p>Hello Khách</p>
                         </div>
                     </div>
-                </div>
-                <div class="my-message-wrapper">
-                    <div class="my-message">
-                        <div class="created-at">12:04</div>
-                        <div class="my-message-content">
+                </div> -->
+                <!-- <div class="my-message-wrapper ">
+                    <div class="my-message ">
+                        <div class="owner ">Admin123</div>
+                        <div class="created-at ">12:04</div>
+                        <div class="my-message-content ">
                             <p>Hello</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="main-action-wrapper">
+            <div class="main-action-wrapper ">
                 <div class="main-action">
                     <input type="text" class="chat-content">
-                    <button type="button" id="send"><i class="fas fa-paper-plane"></i></button>
+                    <button type="button" id="send"><i class="fas fa-paper-plane "></i></button>
                 </div>
             </div>
         </div>

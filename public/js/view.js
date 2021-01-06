@@ -1,22 +1,62 @@
-let data = document.cookie;
-console.log(data)
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+let user = getCookie("user")
 var socket = io("http://localhost:3000");
-socket.on("Server-sent-data", function(data) {
-    $(".main-content-wrapper").append(`<div class="my-message-wrapper">
-    <div class="my-message">
-        <div class="created-at">12:04</div>
-        <div class="my-message-content">
-            <p>${data}</p>
+socket.on("send", function(data) {
+    document.querySelector(".chat-content").value = ""
+    const date = new Date(data.createdAt)
+    const dateContent = date.getHours() + ":" + date.getMinutes() + " - " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
+    if (data.owner == user) {
+        $(".main-content-wrapper").append(`<div class="my-message-wrapper ">
+        <div class="my-message ">
+            <div class="owner ">Bạn</div>
+            <div class="created-at ">${dateContent}</div>
+            <div class="my-message-content ">
+                <p>${data.content}</p>
+            </div>
         </div>
-    </div>
-</div>`);
-});
+    </div>`)
+    } else {
+        $(".main-content-wrapper").append(`<div class="guest-message-wrapper ">
+        <div class="guest-message ">
+            <div class="owner">${data.owner}</div>
+            <div class="created-at ">${dateContent}</div>
+            <div class="guest-message-content ">
+                <p>${data.content}</p>
+            </div>
+        </div>
+    </div>`)
+    }
 
+});
 //client gửi dữ liệu lên server
 $(document).ready(function() {
     $("#send").click(function() {
-        let chat = document.querySelector(".chat-content").value
-        console.log(chat)
-        socket.emit("Client-sent-data", chat);
+        if (user == "") {
+            window.location = "http://localhost:3000/login";
+            alert("tài khoản của bạn đã hết thời hạn !!!")
+        }
+        let content = document.querySelector(".chat-content").value
+        let date = new Date()
+        chats = {
+            content: content,
+            createdAt: date.toISOString(),
+            owner: user
+        }
+        if (chats.content != "") {
+            socket.emit("send", chats);
+        }
     });
 });
