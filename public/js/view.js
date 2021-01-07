@@ -12,8 +12,28 @@ function getCookie(cname) {
     }
     return "";
 }
-let user = getCookie("user")
 var socket = io("http://localhost:3000");
+let user = getCookie("user")
+if (user == "") {
+    window.location = "http://localhost:3000/login";
+    alert("Đăng nhập đê bạn ơi !!!")
+} else {
+    console.log("online")
+    socket.emit("online", user)
+}
+socket.on("online", (data) => {
+    let rawHtml = ""
+    for (const user of data) {
+        console.log(user)
+        rawHtml = rawHtml + `<div class="menbers">
+        <div>
+            <div class="status"></div>
+            <div>${user}</div>
+        </div>
+    </div>`
+    }
+    $(".menbers-wrapper").html(rawHtml)
+})
 socket.on("send", function(data) {
     document.querySelector(".chat-content").value = ""
     const date = new Date(data.createdAt)
@@ -59,4 +79,8 @@ $(document).ready(function() {
             socket.emit("send", chats);
         }
     });
+    $(".btn-out").click(() => {
+        socket.emit("out", user);
+        window.location = "http://localhost:3000/login";
+    })
 });
