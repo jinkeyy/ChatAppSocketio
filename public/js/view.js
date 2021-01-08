@@ -12,10 +12,15 @@ function getCookie(cname) {
     }
     return "";
 }
-var socket = io("http://localhost:3000");
+scrollToEndElm = () => {
+        const elm = document.querySelector(".main-content-wrapper")
+        elm.scrollTop = elm.scrollHeight;
+    }
+    // var socket = io("https://lunachat001.herokuapp.com");
+let socket = io("https://lunachat001.herokuapp.com")
 let user = getCookie("user")
 if (user == "") {
-    window.location = "http://localhost:3000/login";
+    window.location = "https://lunachat001.herokuapp.com/login";
     alert("Đăng nhập đê bạn ơi !!!")
 } else {
     console.log("online")
@@ -36,8 +41,9 @@ socket.on("online", (data) => {
 })
 socket.on("send", function(data) {
     document.querySelector(".chat-content").value = ""
-    const date = new Date(data.createdAt)
-    const dateContent = date.getHours() + ":" + date.getMinutes() + " - " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
+    let date = new Date(data.createdAt)
+    let dateContent = date.getHours() + ":" + date.getMinutes()
+        //  + " - " + date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
     if (data.owner == user) {
         $(".main-content-wrapper").append(`<div class="my-message-wrapper ">
         <div class="my-message ">
@@ -48,6 +54,7 @@ socket.on("send", function(data) {
             </div>
         </div>
     </div>`)
+        scrollToEndElm()
     } else {
         $(".main-content-wrapper").append(`<div class="guest-message-wrapper ">
         <div class="guest-message ">
@@ -58,14 +65,16 @@ socket.on("send", function(data) {
             </div>
         </div>
     </div>`)
+        scrollToEndElm()
     }
 
 });
 //client gửi dữ liệu lên server
 $(document).ready(function() {
-    $("#send").click(function() {
+    $("#send").click(function(e) {
+        e.preventDefault();
         if (user == "") {
-            window.location = "http://localhost:3000/login";
+            window.location = "https://lunachat001.herokuapp.com/login";
             alert("tài khoản của bạn đã hết thời hạn !!!")
         }
         let content = document.querySelector(".chat-content").value
@@ -81,6 +90,6 @@ $(document).ready(function() {
     });
     $(".btn-out").click(() => {
         socket.emit("out", user);
-        window.location = "http://localhost:3000/login";
+        window.location = "https://lunachat001.herokuapp.com/login";
     })
 });

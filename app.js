@@ -22,15 +22,17 @@ try {
 } catch (e) {
     console.log("Could not connect");
 }
-var server = require("http").Server(app);
 
 // server.listen(3000, () => {
 //     console.log("Đang lắng nghe ở cổng 3000")
 // });
-app.listen(process.env.PORT || 3000, () => {
+var server = require("http").Server(app);
+server.listen(process.env.PORT || 3000, () => {
         console.log(`app is running on port ${process.env.PORT}`);
     })
     // or with import syntax
+
+
 let user = []
 var io = require("socket.io")(server);
 // tạo kết nối giữa client và server
